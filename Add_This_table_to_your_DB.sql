@@ -1,12 +1,9 @@
-// Function to save a booking request
-function dr_save_booking_request($name, $phone, $location, $date) {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'dr_bookings';
-    $wpdb->insert($table_name, array(
-        'name' => $name,
-        'phone' => $phone,
-        'location' => $location,
-        'date' => $date,
-        'status' => 'pending',
-    ));
-}
+CREATE TABLE wp_dr_bookings (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    status ENUM('pending', 'accepted', 'rejected') NOT NULL DEFAULT 'pending',
+    PRIMARY KEY (id)
+);
